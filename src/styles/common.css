@@ -1,11 +1,34 @@
-.button-primary {
-  padding: 15px 45px;
-  text-align: center;
-  text-transform: uppercase;
-  background-size: 200% auto;
-  color: white;
-  background-color: rgb(110, 110, 255);
-  border-radius: 20px;
-  cursor: pointer;
+.common-button {
+  padding: 0.7rem 1.3rem;
   border: none;
+  border-radius: 10px;
+
+  color: #fff;
+  font-size: 15px;
+}
+
+.primary {
+  background-color: #66cbff;
+}
+
+.success {
+  background-color: #3bb846;
+}
+
+.danger {
+  background-color: #ff6666;
+}
+
+.warning {
+  background-color: #f5ff66;
+}
+.info {
+  background-color: #2091ff;
+}
+
+.no-data-found {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

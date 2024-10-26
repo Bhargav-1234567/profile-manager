@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addProfile, editProfile } from "../models/profileModel";
 import Modal from "../components/Modal";
 import ProfileForm from "./ProfileForm";
+import { useIsPresent, motion, AnimatePresence } from "framer-motion";
 import { useProfileViewModel } from "../viewmodels/useProfileViewModel";
 
 const ProfileList = () => {
@@ -37,52 +38,78 @@ const ProfileList = () => {
     setModalOpen(false);
   };
 
+  const handleCancel = () => {
+    setModalOpen(false);
+  };
+
   return (
     <div className="container">
-      <div className="table-container">
+      <div className="table-container ">
         <div>
           <div className="header-sec">
-            <h1>Manage Profiles</h1>
-            <button className="button-primary" onClick={handleAddClick}>
+            <h1>Profiles</h1>
+            <motion.button
+              whileTap={{ scale: 0.85 }}
+              className="common-button info"
+              onClick={handleAddClick}
+            >
               Add Profile
-            </button>
+            </motion.button>
           </div>
-          <table className="list">
-            <tr>
-              <th>Name</th>
-              <th>Age</th>
-              <th>bio</th>
-              <th>bio</th>
-            </tr>
-            {profiles.map((profile) => (
-              <tr className="list-item" key={profile.id}>
-                <td>
-                  <div>{profile.name}</div>
-                </td>
-                <td>
-                  {" "}
-                  <div>{profile.age}</div>
-                </td>
-                <td>
-                  <div className="bio">{profile.bio}</div>{" "}
-                </td>
-                <td>
-                  <button onClick={() => handleEditClick(profile)}>Edit</button>
-                  <button onClick={() => handleDeleteClick(profile.id)}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </table>
+          <div className="list">
+            <AnimatePresence>
+              <div className="list-item header">
+                <div>Name</div>
+                <div>Age</div>
+                <div>Gender</div>
+                <div>Bio</div>
+                <div>Actions</div>
+              </div>
+              {profiles.length === 0 && (
+                <div className="no-data-found">No Profiles Found!</div>
+              )}
+              {profiles.map((profile) => (
+                <motion.div
+                  className="list-item"
+                  key={profile.id}
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                >
+                  <div className="name">{profile.name}</div>
+                  <div className="age">{profile.age}</div>
+                  <div className="gender">{profile.gender}</div>
+                  <div className="bio">{profile.bio}</div>
+                  <div className="action">
+                    <motion.button
+                      className="common-button info"
+                      whileTap={{ scale: 0.85 }}
+                      onClick={() => handleEditClick(profile)}
+                    >
+                      Edit
+                    </motion.button>
+                    <motion.button
+                      className="common-button danger"
+                      whileTap={{ scale: 0.85 }}
+                      onClick={() => handleDeleteClick(profile.id)}
+                    >
+                      Delete
+                    </motion.button>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          <Modal show={isModalOpen} onClose={handleCloseModal}>
+            <ProfileForm
+              onSubmit={handleFormSubmit}
+              initialData={editProfileData}
+              onCancel={handleCancel}
+            />
+          </Modal>
         </div>
       </div>
-      <Modal show={isModalOpen} onClose={handleCloseModal}>
-        <ProfileForm
-          onSubmit={handleFormSubmit}
-          initialData={editProfileData}
-        />
-      </Modal>
     </div>
   );
 };

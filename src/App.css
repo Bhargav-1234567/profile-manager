@@ -3,11 +3,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: cursive, sans-serif;
 }
 
 body {
   height: 100vh;
+  button {
+    cursor: pointer;
+  }
 }
 
 .container {
@@ -25,28 +28,37 @@ body {
     margin-bottom: unset;
   }
   .table-container {
-    margin: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: auto;
+    width: 70%;
     .list {
+      height: calc(100vh - 104px);
+      overflow: auto;
       border: none;
       border-collapse: collapse;
-      tr {
-        td,
-        th {
+      position: relative;
+      .header {
+        position: sticky;
+        top: 0;
+        div {
           padding: 1rem;
-        }
-        th {
-          background-color: #d9d9d9;
+          font-weight: bold;
+          text-align: center;
         }
       }
       .list-item {
-        border-bottom: 1px solid #dedede;
-        .bio {
-          max-width: 500px;
-          max-height: 100px;
-          overflow: auto;
+        background-color: #e9e9e9;
+        display: grid;
+        grid-template-columns: 0.4fr 0.4fr 0.4fr 3fr 1fr;
+        .name,
+        .age,
+        .bio,
+        .gender,
+        .action {
+          padding: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
         }
       }
     }
@@ -74,31 +86,32 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   text-align: center;
-}
+  h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+  }
 
-.modal h2 {
-  font-size: 20px;
-  color: #333;
-  margin-bottom: 15px;
-}
+  form input[type="text"],
+  form input[type="number"],
+  form input[type="date"],
+  form select,
+  form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
 
-.modal form input[type="text"],
-.modal form input[type="number"],
-.modal form input[type="date"],
-.modal form select,
-.modal form textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.modal form textarea {
-  resize: vertical;
-}
-
-.list-item {
-  width: 100%;
+  form textarea {
+    resize: vertical;
+  }
+  .model-action {
+    display: flex;
+    gap: 1rem;
+    justify-content: end;
+    margin-top: 1rem;
+  }
 }

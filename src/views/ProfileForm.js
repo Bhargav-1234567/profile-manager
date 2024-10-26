@@ -1,7 +1,8 @@
 // src/components/ProfileForm.js
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
-const ProfileForm = ({ onSubmit, initialData }) => {
+const ProfileForm = ({ onSubmit, initialData, onCancel }) => {
   const [profile, setProfile] = useState({
     name: "",
     age: "",
@@ -57,7 +58,23 @@ const ProfileForm = ({ onSubmit, initialData }) => {
         <option value="female">Female</option>
         <option value="other">Other</option>
       </select>
-      <button type="submit">Save</button>
+      <div className="model-action">
+        <motion.button
+          className="common-button success"
+          whileTap={{ scale: 0.85 }}
+          type="submit"
+        >
+          Save
+        </motion.button>
+        <motion.button
+          className="common-button danger"
+          whileTap={{ scale: 0.85 }}
+          onClick={onCancel}
+          type="button"
+        >
+          Close
+        </motion.button>
+      </div>
     </form>
   );
 };

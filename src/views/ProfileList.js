@@ -6,6 +6,7 @@ import Modal from "../components/Modal";
 import ProfileForm from "./ProfileForm";
 import { useIsPresent, motion, AnimatePresence } from "framer-motion";
 import { useProfileViewModel } from "../viewmodels/useProfileViewModel";
+import Confirmation from "../components/Confirmation";
 
 const ProfileList = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,8 @@ const ProfileList = () => {
   const { handleDeleteProfile } = useProfileViewModel();
 
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
+  const [deleteProfileId, setDeleteProfileId] = useState(null);
   const [editProfileData, setEditProfileData] = useState(null);
 
   const handleAddClick = () => {
@@ -25,9 +28,13 @@ const ProfileList = () => {
     setModalOpen(true);
   };
   const handleDeleteClick = (id) => {
-    handleDeleteProfile(id);
+    // handleDeleteProfile(id);
+    setConfirmationModalOpen(true);
+    setDeleteProfileId(id);
   };
-  const handleCloseModal = () => setModalOpen(false);
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   const handleFormSubmit = (profile) => {
     if (editProfileData) {
@@ -40,6 +47,15 @@ const ProfileList = () => {
 
   const handleCancel = () => {
     setModalOpen(false);
+  };
+
+  const handleConfirm = () => {
+    handleDeleteProfile(deleteProfileId);
+    setConfirmationModalOpen(false);
+  };
+
+  const handleCancelDelete = () => {
+    setConfirmationModalOpen(false);
   };
 
   return (
@@ -106,6 +122,12 @@ const ProfileList = () => {
               onSubmit={handleFormSubmit}
               initialData={editProfileData}
               onCancel={handleCancel}
+            />
+          </Modal>
+          <Modal show={isConfirmationModalOpen} onClose={handleCloseModal}>
+            <Confirmation
+              onConfirm={handleConfirm}
+              onCancel={handleCancelDelete}
             />
           </Modal>
         </div>

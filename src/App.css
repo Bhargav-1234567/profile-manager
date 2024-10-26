@@ -1,38 +1,104 @@
-.App {
+@import url("../src/styles/common.css");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  height: 100vh;
+}
+
+.container {
+  padding: 2rem;
+  padding: 20px;
+  background-color: #ffffff;
+  height: inherit;
+  .header-sec {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  h1 {
+    margin-bottom: unset;
+  }
+  .table-container {
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .list {
+      border: none;
+      border-collapse: collapse;
+      tr {
+        td,
+        th {
+          padding: 1rem;
+        }
+        th {
+          background-color: #d9d9d9;
+        }
+      }
+      .list-item {
+        border-bottom: 1px solid #dedede;
+        .bio {
+          max-width: 500px;
+          max-height: 100px;
+          overflow: auto;
+        }
+      }
+    }
+  }
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.modal h2 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 15px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.modal form input[type="text"],
+.modal form input[type="number"],
+.modal form input[type="date"],
+.modal form select,
+.modal form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.modal form textarea {
+  resize: vertical;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.list-item {
+  width: 100%;
 }

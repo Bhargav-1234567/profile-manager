@@ -1,0 +1,11 @@
+.button-primary {
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  background-size: 200% auto;
+  color: white;
+  background-color: rgb(110, 110, 255);
+  border-radius: 20px;
+  cursor: pointer;
+  border: none;
+}

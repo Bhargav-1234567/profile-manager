@@ -1,3 +1,10 @@
+## About app
+
+ - Profile management React Js App using react-redux
+ - MVVM code architecture.
+ - Framer motion animations
+ - Basic CRUD operations using redux
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
